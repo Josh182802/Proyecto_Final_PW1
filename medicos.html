@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Directorio de médicos del Hospital Vida y Salud. Busca especialistas por nombre o especialidad.">
+    <link rel="stylesheet" href="CSS/estilos.css">
+    <script src="JavaScript/medicos.js"></script>
+    <script src="JavaScript/script.js"></script>
+    <title>Médicos | Hospital Vida y Salud</title>
+</head>
+<body>
+    <header class="encabezado">
+        <div class="navegacion">
+            <a href="index.html" class="logo">Hospital Vida y Salud</a>
+            <button 
+                class="boton-menu"
+                id="botonMenu"
+                type="button"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="menu-principal" id="menuPrincipal">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="medicos.html">Médicos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="banner-interno">
+            <p class="subtitulo-portada">Directorio médico</p>
+            <h1>Encuentra al especialista adecuado para ti</h1>
+            <p>Busca entre nuestros médicos por nombre o por especialidad.</p>
+        </section>
+
+        <section class="seccion-buscador">
+            <div class="contenedor-general">
+                <form class="formulario-busqueda" id="formularioBusqueda">
+                    <div class="campo-busqueda">
+                        <label for="buscarNombre">Nombre del médico</label>
+                        <input
+                            type="text"
+                            id="buscarNombre"
+                            name="buscarNombre"
+                            placeholder="Ej. Carlos Martínez"
+                        >
+                    </div>
+                    <div class="campo-busqueda">
+                        <label for="buscarEspecialidad">Especialidad</label>
+                        <select id="buscarEspecialidad" name="buscarEspecialidad">
+                            <option value="">Todas las especialidades</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="boton">Buscar</button>
+                    <button type="button" id="botonLimpiarBusqueda" class="boton boton-limpio">Limpiar</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="seccion-resultados">
+            <div class="contenedor-general">
+                <p class="contador-resultados" id="contadorResultados"></p>
+                <div class="contenedor-medicos" id="contenedorMedicos"></div>
+                <p class="sin-resultados" id="sinResultados" style="display: none;">
+                    No se encontraron médicos que coincidan con tu búsqueda. Intenta con otro nombre o especialidad.
+                </p>
+            </div>
+        </section>
+    </main>
+    <footer class="pie-pagina">
+        <div class="contenedor-general contenido-pie">
+            <div class="columna-pie">
+                <a href="index.html" class="logo logo-pie">Hospital Vida y Salud</a>
+                <p>Atención médica integral, segura y humana para nuestros pacientes y sus familias.</p>
+            </div>
+            <div class="columna-pie">
+                <h2>Enlaces</h2>
+                <ul>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="medicos.html">Directorio médico</a></li>
+                    <li><a href="faq.html">Preguntas frecuentes</a></li>
+                </ul>
+            </div>
+            <div class="columna-pie">
+                <h2>Contacto</h2>
+                <ul>
+                    <li>Tegucigalpa, Honduras</li>
+                    <li><a href="tel:+50422000000">+504 2200-0000</a></li>
+                    <li><a href="mailto:contacto@hospitalvidaysalud.com">contacto@hospitalvidaysalud.com</a></li>
+                </ul>
+            </div>
+            <div class="columna-pie">
+                <h2>Horarios</h2>
+                <ul>
+                    <li>Consultas: Lunes a Sábado</li>
+                    <li>7:00 a. m. - 7:00 p. m.</li>
+                    <li>Emergencias: 24 horas</li>
+                </ul>
+            </div>
+        </div>
+        <div class="pie-inferior">
+            <p>&copy;
+                <span id="anioActual"></span>
+                Hospital Vida y Salud. Proyecto académico ICC - SCJ (UNICAH)</p>
+        </div>
+    </footer>
+    <button
+        id="botonArriba"
+        class="boton-arriba"
+        type="button"
+        aria-label="Volver al inicio de la página"
+    >
+        ↑
+    </button>
+    <script src="JavaScript/script.js"></script>
+    <script src="JavaScript/medicos.js"></script>
+</body>
+</html>
