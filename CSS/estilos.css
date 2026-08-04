@@ -766,3 +766,327 @@ h1 {
         height: 44px;
     }
 }
+
+
+.banner-interno {
+    padding: 90px 40px 70px;
+    text-align: center;
+    background: linear-gradient(rgba(6, 79, 92, 0.92), rgba(6, 79, 92, 0.92)), url("../img/portada-hospital.jpg");
+    background-size: cover;
+    background-position: center;
+}
+ 
+.banner-interno .subtitulo-portada {
+    justify-content: center;
+}
+ 
+.banner-interno h1 {
+    max-width: 700px;
+    margin: 0 auto 12px;
+    color: #ffffff;
+    font-size: 42px;
+}
+ 
+.banner-interno p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #d5e5e7;
+    font-size: 17px;
+}
+
+.seccion-buscador {
+    padding: 70px 40px 30px;
+}
+ 
+.formulario-busqueda {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto auto;
+    gap: 15px;
+    align-items: end;
+    padding: 30px;
+    border: 1px solid #dddddd;
+    border-radius: 12px;
+    background-color: #f5f7f8;
+}
+ 
+.campo-busqueda label {
+    display: block;
+    margin-bottom: 8px;
+    color: #1e2a30;
+    font-weight: bold;
+    font-size: 14px;
+}
+ 
+.campo-busqueda input,
+.campo-busqueda select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 15px;
+    color: #333333;
+}
+ 
+.campo-busqueda input:focus,
+.campo-busqueda select:focus {
+    outline: none;
+    border-color: #087f8c;
+}
+ 
+.boton-limpio {
+    border-color: #087f8c;
+    background-color: transparent;
+    color: #087f8c;
+}
+ 
+.boton-limpio:hover {
+    background-color: #087f8c;
+    color: #ffffff;
+}
+ 
+.seccion-resultados {
+    padding: 40px 40px 100px;
+}
+ 
+.contador-resultados {
+    margin-bottom: 25px;
+    color: #666666;
+    font-size: 15px;
+}
+ 
+.contador-resultados strong {
+    color: #087f8c;
+}
+ 
+.contenedor-medicos {
+    max-width: 1150px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+ 
+.tarjeta-medico {
+    display: flex;
+    gap: 20px;
+    padding: 28px;
+    border: 1px solid #dddddd;
+    border-radius: 12px;
+    background-color: #ffffff;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+ 
+.tarjeta-medico:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
+}
+ 
+.avatar-medico {
+    flex-shrink: 0;
+    width: 65px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #e8f7f8;
+    color: #064f5c;
+    font-weight: bold;
+    font-size: 20px;
+}
+ 
+.info-medico h3 {
+    margin-bottom: 4px;
+    color: #1e2a30;
+    font-size: 19px;
+}
+ 
+.especialidad-medico {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    background-color: #e8f7f8;
+    color: #087f8c;
+    font-size: 13px;
+    font-weight: bold;
+}
+ 
+.info-medico p {
+    margin-bottom: 4px;
+    color: #666666;
+    font-size: 14px;
+}
+ 
+.info-medico p strong {
+    color: #333333;
+}
+ 
+.sin-resultados {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    text-align: center;
+    color: #666666;
+    font-size: 17px;
+}
+ 
+.seccion-formulario {
+    padding: 70px 40px 100px;
+}
+ 
+.contenedor-formulario {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 45px;
+    border: 1px solid #dddddd;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+ 
+.fila-formulario {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+ 
+.grupo-campo {
+    margin-bottom: 22px;
+}
+ 
+.grupo-campo label {
+    display: block;
+    margin-bottom: 8px;
+    color: #1e2a30;
+    font-weight: bold;
+    font-size: 14px;
+}
+ 
+.grupo-campo .indicador-requerido {
+    color: #d9363e;
+}
+ 
+.grupo-campo input,
+.grupo-campo select,
+.grupo-campo textarea {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 15px;
+    color: #333333;
+    transition: border-color 0.3s;
+}
+ 
+.grupo-campo textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+ 
+.grupo-campo input:focus,
+.grupo-campo select:focus,
+.grupo-campo textarea:focus {
+    outline: none;
+    border-color: #087f8c;
+}
+ 
+.grupo-campo input.campo-invalido,
+.grupo-campo select.campo-invalido,
+.grupo-campo textarea.campo-invalido {
+    border-color: #d9363e;
+    background-color: #fdf1f1;
+}
+ 
+.texto-ayuda {
+    margin-top: 6px;
+    color: #999999;
+    font-size: 13px;
+}
+ 
+.mensaje-error {
+    display: none;
+    margin-top: 6px;
+    color: #d9363e;
+    font-size: 13px;
+    font-weight: bold;
+}
+ 
+.mensaje-error.visible {
+    display: block;
+}
+ 
+.mensaje-formulario {
+    display: none;
+    margin-bottom: 25px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+}
+ 
+.mensaje-formulario.visible {
+    display: block;
+}
+ 
+.mensaje-formulario.exito {
+    border: 1px solid #9fd8b1;
+    background-color: #eafaf0;
+    color: #1f7a3f;
+}
+ 
+.mensaje-formulario.error {
+    border: 1px solid #f0b4b8;
+    background-color: #fdf1f1;
+    color: #a3222a;
+}
+ 
+.boton-formulario {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+ 
+@media screen and (max-width: 950px) {
+    .contenedor-medicos {
+        grid-template-columns: 1fr;
+    }
+}
+ 
+@media screen and (max-width: 768px) {
+    .banner-interno {
+        padding: 70px 20px 50px;
+    }
+ 
+    .banner-interno h1 {
+        font-size: 30px;
+    }
+ 
+    .seccion-buscador,
+    .seccion-resultados,
+    .seccion-formulario {
+        padding: 40px 20px 60px;
+    }
+ 
+    .formulario-busqueda {
+        grid-template-columns: 1fr;
+    }
+ 
+    .fila-formulario {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+ 
+    .contenedor-formulario {
+        padding: 28px 22px;
+    }
+ 
+    .tarjeta-medico {
+        flex-direction: column;
+    }
+}
+ 
