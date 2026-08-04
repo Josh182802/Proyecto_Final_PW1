@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contáctanos. Hospital Vida y Salud está para atenderte y responder tus preguntas.">
+    <link rel="stylesheet" href="CSS/estilos.css">
+    <script src="JavaScript/validaciones.js"></script>
+    <title>Contacto | Hospital Vida y Salud</title>
+</head>
+<body>
+    <header class="encabezado">
+        <div class="navegacion">
+            <a href="index.html" class="logo">Hospital Vida y Salud</a>
+            <button 
+                class="boton-menu"
+                id="botonMenu"
+                type="button"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="menu-principal" id="menuPrincipal">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="medicos.html">Médicos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="banner-interno">
+            <p class="subtitulo-portada">Contacto</p>
+            <h1>Estamos para ayudarte</h1>
+            <p>Escríbenos y un miembro de nuestro equipo te responderá a la brevedad posible.</p>
+        </section>
+
+        <section class="seccion-formulario">
+            <div class="contenedor-formulario">
+                <div class="mensaje-formulario" id="mensajeFormularioContacto"></div>
+                <form id="formularioContacto" novalidate>
+                    <div class="fila-formulario">
+                        <div class="grupo-campo">
+                            <label for="nombreContacto">Nombre completo <span class="indicador-requerido">*</span></label>
+                            <input type="text" id="nombreContacto" name="nombreContacto" placeholder="Ej. Juan Pérez">
+                            <span class="mensaje-error" id="errorNombreContacto"></span>
+                        </div>
+                        <div class="grupo-campo">
+                            <label for="telefonoContacto">Teléfono <span class="indicador-requerido">*</span></label>
+                            <input type="tel" id="telefonoContacto" name="telefonoContacto" placeholder="9999-9999" maxlength="9">
+                            <span class="mensaje-error" id="errorTelefonoContacto"></span>
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="correoContacto">Correo electrónico <span class="indicador-requerido">*</span></label>
+                        <input type="email" id="correoContacto" name="correoContacto" placeholder="ejemplo@correo.com">
+                        <span class="mensaje-error" id="errorCorreoContacto"></span>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="asuntoContacto">Asunto <span class="indicador-requerido">*</span></label>
+                        <select id="asuntoContacto" name="asuntoContacto">
+                            <option value="">Selecciona un motivo</option>
+                            <option value="Consulta general">Consulta general</option>
+                            <option value="Citas médicas">Citas médicas</option>
+                            <option value="Facturación">Facturación</option>
+                            <option value="Quejas y sugerencias">Quejas y sugerencias</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                        <span class="mensaje-error" id="errorAsuntoContacto"></span>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="mensajeContacto">Mensaje <span class="indicador-requerido">*</span></label>
+                        <textarea id="mensajeContacto" name="mensajeContacto" placeholder="Escribe tu mensaje aquí..."></textarea>
+                        <span class="mensaje-error" id="errorMensajeContacto"></span>
+                    </div>
+
+                    <button type="submit" class="boton boton-formulario">Enviar mensaje</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer class="pie-pagina">
+        <div class="contenedor-general contenido-pie">
+            <div class="columna-pie">
+                <a href="index.html" class="logo logo-pie">Hospital Vida y Salud</a>
+                <p>Atención médica integral, segura y humana para nuestros pacientes y sus familias.</p>
+            </div>
+            <div class="columna-pie">
+                <h2>Enlaces</h2>
+                <ul>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="medicos.html">Directorio médico</a></li>
+                    <li><a href="faq.html">Preguntas frecuentes</a></li>
+                </ul>
+            </div>
+            <div class="columna-pie">
+                <h2>Contacto</h2>
+                <ul>
+                    <li>Tegucigalpa, Honduras</li>
+                    <li><a href="tel:+50422000000">+504 2200-0000</a></li>
+                    <li><a href="mailto:contacto@hospitalvidaysalud.com">contacto@hospitalvidaysalud.com</a></li>
+                </ul>
+            </div>
+            <div class="columna-pie">
+                <h2>Horarios</h2>
+                <ul>
+                    <li>Consultas: Lunes a Sábado</li>
+                    <li>7:00 a. m. - 7:00 p. m.</li>
+                    <li>Emergencias: 24 horas</li>
+                </ul>
+            </div>
+        </div>
+        <div class="pie-inferior">
+            <p>&copy;
+                <span id="anioActual"></span>
+                Hospital Vida y Salud. Proyecto académico ICC - SCJ (UNICAH)</p>
+        </div>
+    </footer>
+    <button
+        id="botonArriba"
+        class="boton-arriba"
+        type="button"
+        aria-label="Volver al inicio de la página"
+    >
+        ↑
+    </button>
+    <script src="JavaScript/script.js"></script>
+    <script src="JavaScript/validaciones.js"></script>
+</body>
+</html>
