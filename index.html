@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hospital Vida y Salud ofrece atención médica integral, especialistas y servicios hospitalarios.">
+    <link rel="stylesheet" href="CSS/estilos.css">
+    <title>Hospital Vida y Salud</title>
+</head>
+<body>
+    <header class="encabezado">
+        <div class="navegacion">
+            <a href="index.html" class="logo">Hospital Vida y Salud</a>
+            <button 
+                class="boton-menu"
+                id="botonMenu"
+                type="button"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="menu-principal" id="menuPrincipal">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="medicos.html">Médicos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="portada">
+            <article class="diapositiva activa">
+                <div class="contenido-portada">
+                    <p class="subtitulo-portada">
+                        Atención médica integral
+                    </p>
+                    <h1>Cuidamos tu salud en cada etapa de tu vida</h1>
+                    <p class="descripcion-portada">
+                        Contamos con profesionales comprometidos, tecnología moderna y atención médica de calidad para ti y tu familia.
+                    </p>
+                    <div class="botones-portada">
+                        <a href="citas.html" class="boton">Solicita cita</a>
+                        <a href="servicios.html" class="boton boton-secundario">Ver servicios</a>
+                    </div>
+                </div>
+            </article>
+            <article class="diapositiva">
+                <div class="contenido-portada">
+                    <p class="subtitulo-portada">
+                        Emergencias 24 horas
+                    </p>
+                    <h2>Atención inmediata cuando más la necesitas</h2>
+                    <p class="descripcion-portada">
+                        Nuestro equipo de emergencias está disponible todos los días para brindar una atención rápida y segura.
+                    </p>
+                    <div class="botones-portada">
+                        <a href="emergencias.html" class="boton boton-emergencia">Ver emergencias</a>
+                        <a href="tel:+50422001111" class="boton boton-secundario">Llamar ahora</a>
+                    </div>
+                </div>
+            </article>
+            <div class="controles-carrusel">
+                <button
+                    id="botonAnterior"
+                    class="boton-carrusel"
+                    type="button"
+                    aria-label="Mostrar diapositiva anterior"
+                >
+                    &#10094;
+                </button>
+                <div class="indicadores-carrusel">
+                    <button
+                        class="indicador activo"
+                        type="button"
+                        data-indice="0"
+                        aria-label="Mostrar primera diapositiva"
+                    >
+                    </button>
+                    <button
+                        class="indicador"
+                        type="button"
+                        data-indice="1"
+                        aria-label="Mostrar segunda diapositiva"
+                    >
+                    </button>
+                </div>
+                <button
+                    id="botonSiguiente"
+                    class="boton-carrusel"
+                    type="button"
+                    aria-label="Mostrar diapositiva siguiente"
+                >
+                    &#10095;
+                </button>
+            </div>
+        </section>
+        <section class="accesos-rapidos">
+            <div class="contenedor-accesos">
+                <a href="citas.html" class="tarjeta-acceso">
+                    <div class="numero-acceso">
+                        01
+                    </div>
+                    <div class="contenido-acceso">
+                        <h2>Solicitar una cita</h2>
+                        <p>Agenda una consulta con nuestros especialistas.</p>
+                    </div>
+                </a>
+                <a href="medicos.html" class="tarjeta-acceso">
+                    <div class="numero-acceso">
+                        02
+                    </div>
+                    <div class="contenido-acceso">
+                        <h2>Buscar un médico</h2>
+                        <p>Consulta nuestro directorio de especialistas.</p>
+                    </div>
+                </a>
+                <a href="servicios.html" class="tarjeta-acceso">
+                    <div class="numero-acceso">
+                        03
+                    </div>
+                    <div class="contenido-acceso">
+                        <h2>Ver servicios</h2>
+                        <p>Conoce los servicios médicos disponibles.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+        <section class="servicios-destacados">
+            <div class="contenedor-general">
+                <div class="encabezado-seccion">
+                    <p class="subtitulo-seccion">
+                        Nuestros servicios
+                    </p>
+                    <h2>Atención médica para toda la familia</h2>
+                    <p>Contamos con personal capacitado y servicios especializados para atender las necesidades de nuestros pacientes.</p>
+                </div>
+                <div class="contenedor-servicios">
+                    <article class="tarjeta-servicio">
+                        <div class="icono-servicio">
+                            24/7
+                        </div>
+                        <h3>Emergencias</h3>
+                        <p>Atención médica inmediata durante las 24 horas, todos los días del año.</p>
+                        <a href="emergencias.html">Conocer más</a>
+                    </article>
+                    <article class="tarjeta-servicio">
+                        <div class="icono-servicio">
+                            LAB
+                        </div>
+                        <h3>Laboratorio clínico</h3>
+                        <p>Realizamos diferentes pruebas médicas con procesos seguros y resultados confiables.</p>
+                        <a href="servicios.html">Conocer más</a>
+                    </article>
+                    <article class="tarjeta-servicio">
+                        <div class="icono-servicio">
+                            IMG
+                        </div>
+                        <h3>Diagnóstico por imágenes</h3>
+                        <p>Ofrecemos rayos X, ultrasonidos y otros estudios para apoyar el diagnóstico médico.</p>
+                        <a href="servicios.html">Conocer más</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="presentacion-hospital">
+            <div class="contenedor-general contenido-presentacion">
+                <div class="texto-presentacion">
+                    <p class="subtitulo-seccion">
+                        Hospital Vida y Salud
+                    </p>
+                    <h2>Comprometidos con tu bienestar</h2>
+                    <p>Brindamos atención médica integral mediante un equipo profesional, instalaciones modernas y un trato respetuoso hacia cada paciente.</p>
+                    <p>Nuestro propósito es acompañarte antes, durante y después de cada consulta o procedimiento médico.</p>
+                    <a href="nosotros.html" class="boton">Conocer el hospital</a>
+                </div>
+                <div class="estadisticas-hospital">
+                    <article class="tarjeta-estadistica">
+                        <strong>24/7</strong>
+                        <span>Servicio de emergencias</span>
+                    </article>
+                    <article class="tarjeta-estadistica">
+                        <strong>10+</strong>
+                        <span>Especialidades médicas</span>
+                    </article>
+                    <article class="tarjeta-estadistica">
+                        <strong>30+</strong>
+                        <span>Profesionales de salud</span>
+                    </article>
+                    <article class="tarjeta-estadistica">
+                        <strong>100%</strong>
+                        <span>Compromiso con el paciente</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="llamado-cita">
+            <div class="contenedor-general contenido-llamado">
+                <div>
+                    <p class="subtitulo-llamado">
+                        Estamos para ayudarte
+                    </p>
+                    <h2>Programa tu próxima consulta médica</h2>
+                    <p>Completa la solicitud de cita y nuestro equipo se pondrá en contacto contigo para confirmar la disponibilidad.</p>
+                </div>
+                <a href="citas.html" class="boton boton-claro">Solicita una cita</a>
+            </div>
+        </section>
+    </main>
+    <footer class="pie-pagina">
+        <div class="contenedor-general contenido-pie">
+            <div class="columna-pie">
+                <a href="index.html" class="logo logo-pie">Hospital Vida y Salud</a>
+                <p>Atención médica integral, segura y humana para nuestros pacientes y sus familias.</p>
+            </div>
+            <div class="columna-pie">
+                <h2>Enlaces</h2>
+                <ul>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="medicos.html">Directorio médico</a></li>
+                    <li><a href="faq.html">Preguntas frecuentes</a></li>
+                </ul>
+            </div>
+            <div class="columna-pie">
+                <h2>Contacto</h2>
+                <ul>
+                    <li>Tegucigalpa, Honduras</li>
+                    <li><a href="tel:+50422000000">+504 2200-0000</a></li>
+                    <li><a href="mailto:contacto@hospitalvidaysalud.com">contacto@hospitalvidaysalud.com</a></li>
+                </ul>
+            </div>
+            <div class="columna-pie">
+                <h2>Horarios</h2>
+                <ul>
+                    <li>Consultas: Lunes a Sábado</li>
+                    <li>7:00 a. m. - 7:00 p. m.</li>
+                    <li>Emergencias: 24 horas</li>
+                </ul>
+            </div>
+        </div>
+        <div class="pie-inferior">
+            <p>&copy;
+                <span id="anioActual"></span>
+                Hospital Vida y Salud. Proyecto académico ICC - SCJ (UNICAH)</p>
+        </div>
+    </footer>
+    <button
+        id="botonArriba"
+        class="boton-arriba"
+        type="button"
+        aria-label="Volver al inicio de la página"
+    >
+        ↑
+    </button>
+    <script src="JavaScript/script.js"></script>
+</body>
+</html>
