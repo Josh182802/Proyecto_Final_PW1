@@ -140,7 +140,7 @@ h1 {
     max-width: 1150px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
@@ -1090,3 +1090,259 @@ h1 {
     }
 }
  
+.banner-pagina{
+    padding:120px 40px;
+    background:linear-gradient(rgba(6,79,92,.88),rgba(6,79,92,.88)),
+    url("../img/portada-hospital.jpg");
+    background-size:cover;
+    background-position:center;
+    text-align:center;
+    color:#ffffff;
+}
+
+.banner-pagina h1{
+    margin:20px 0;
+    color:#ffffff;
+    font-size:52px;
+}
+
+.banner-pagina p{
+    max-width:700px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.7;
+}
+
+.contenido-pagina{
+    padding:90px 40px;
+    background:#ffffff;
+}
+
+.texto-nosotros{
+    max-width:900px;
+    margin:auto;
+    text-align:center;
+}
+
+.texto-nosotros p{
+    margin-bottom:20px;
+    color:#666666;
+    font-size:17px;
+    line-height:1.8;
+}
+
+.tarjetas-informacion{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+    margin-top:50px;
+}
+
+.tarjeta-info{
+    padding:35px;
+    background:#ffffff;
+    border-radius:12px;
+    border:1px solid #dddddd;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.tarjeta-info:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 30px rgba(0,0,0,.15);
+}
+
+.tarjeta-info h3{
+    margin-bottom:18px;
+    color:#087f8c;
+    font-size:24px;
+}
+
+.tarjeta-info p{
+    color:#666666;
+    line-height:1.7;
+}
+
+.lista-servicios{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+    margin-top:50px;
+}
+
+.item-servicio{
+    display:flex;
+    gap:20px;
+    align-items:flex-start;
+    padding:25px;
+    border-radius:12px;
+    background:#ffffff;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.item-servicio h3{
+    color:#087f8c;
+    margin-bottom:10px;
+}
+
+.item-servicio p{
+    color:#666666;
+}
+
+.especialidades-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+    margin-top:40px;
+}
+
+.especialidad{
+    padding:30px;
+    border-radius:12px;
+    text-align:center;
+    border:1px solid #dddddd;
+    transition:.3s;
+    background:#ffffff;
+}
+
+.especialidad:hover{
+    background:#087f8c;
+    color:#ffffff;
+    transform:translateY(-8px);
+}
+
+.especialidad:hover h3,
+.especialidad:hover p{
+    color:#ffffff;
+}
+
+.especialidad h3{
+    margin:18px 0;
+    color:#087f8c;
+}
+
+.especialidad p{
+    color:#666666;
+}
+
+.paciente-info{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+    margin-top:40px;
+}
+
+.paciente-card{
+    padding:30px;
+    border-left:6px solid #087f8c;
+    background:#f8f8f8;
+    border-radius:10px;
+}
+
+.paciente-card h3{
+    margin-bottom:15px;
+    color:#087f8c;
+}
+
+.paciente-card p,
+.paciente-card li{
+    color:#666666;
+    line-height:1.8;
+}
+
+.paciente-card ul{
+    margin-left:20px;
+}
+
+.tabla-horarios{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:40px;
+}
+
+.tabla-horarios th{
+    background:#087f8c;
+    color:#ffffff;
+    padding:15px;
+}
+
+.tabla-horarios td{
+    padding:15px;
+    border:1px solid #dddddd;
+    text-align:center;
+}
+
+.tabla-horarios tr:nth-child(even){
+    background:#f5f7f8;
+}
+
+.faq{
+    display:grid;
+    gap:20px;
+    margin-top:40px;
+}
+
+.faq-item{
+    padding:25px;
+    border-radius:10px;
+    border-left:5px solid #087f8c;
+    background:#ffffff;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.faq-item h3{
+    margin-bottom:10px;
+    color:#087f8c;
+}
+
+.faq-item p{
+    color:#666666;
+    line-height:1.8;
+}
+
+
+/*=========================================
+            RESPONSIVE
+
+@media(max-width:950px){
+
+    .tarjetas-informacion{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .especialidades-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .lista-servicios{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .banner-pagina{
+        padding:90px 20px;
+    }
+
+    .banner-pagina h1{
+        font-size:36px;
+    }
+
+    .contenido-pagina{
+        padding:60px 20px;
+    }
+
+    .tarjetas-informacion,
+    .especialidades-grid,
+    .paciente-info{
+        grid-template-columns:1fr;
+    }
+
+    .tabla-horarios{
+        display:block;
+        overflow-x:auto;
+    }
+
+}
