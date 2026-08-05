@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Solicita tu cita médica en el Hospital Vida y Salud de forma rápida y sencilla.">
+    <link rel="stylesheet" href="CSS/estilos.css">
+    <title>Solicitar Cita | Hospital Vida y Salud</title>
+</head>
+<body>
+    <header class="encabezado">
+        <div class="navegacion">
+            <a href="index.html" class="logo">Hospital Vida y Salud</a>
+            <button 
+                class="boton-menu"
+                id="botonMenu"
+                type="button"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="menu-principal" id="menuPrincipal">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="medicos.html">Médicos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="banner-interno">
+            <p class="subtitulo-portada">Solicitud de cita</p>
+            <h1>Agenda tu consulta médica</h1>
+            <p>Completa el siguiente formulario y nuestro equipo se pondrá en contacto contigo para confirmar tu cita.</p>
+        </section>
+
+        <section class="seccion-formulario">
+            <div class="contenedor-formulario">
+                <div class="mensaje-formulario" id="mensajeFormularioCitas"></div>
+                <form id="formularioCitas" novalidate>
+                    <div class="fila-formulario">
+                        <div class="grupo-campo">
+                            <label for="fechaCita">Fecha <span class="indicador-requerido">*</span></label>
+                            <input type="date" id="fechaCita" name="fechaCita">
+                            <span class="mensaje-error" id="errorFechaCita"></span>
+                        </div>
+                        <div class="grupo-campo">
+                            <label for="horaCita">Hora <span class="indicador-requerido">*</span></label>
+                            <input type="time" id="horaCita" name="horaCita">
+                            <span class="mensaje-error" id="errorHoraCita"></span>
+                        </div>
+                    </div>
+
+                    <div class="fila-formulario">
+                        <div class="grupo-campo">
+                            <label for="nombreCita">Nombre <span class="indicador-requerido">*</span></label>
+                            <input type="text" id="nombreCita" name="nombreCita" placeholder="Ej. María">
+                            <span class="mensaje-error" id="errorNombreCita"></span>
+                        </div>
+                        <div class="grupo-campo">
+                            <label for="apellidoCita">Apellido <span class="indicador-requerido">*</span></label>
+                            <input type="text" id="apellidoCita" name="apellidoCita" placeholder="Ej. López">
+                            <span class="mensaje-error" id="errorApellidoCita"></span>
+                        </div>
+                    </div>
+
+                    <div class="fila-formulario">
+                        <div class="grupo-campo">
+                            <label for="generoCita">Género <span class="indicador-requerido">*</span></label>
+                            <select id="generoCita" name="generoCita">
+                                <option value="">Selecciona una opción</option>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Otro">Otro</option>
+                                <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                            </select>
+                            <span class="mensaje-error" id="errorGeneroCita"></span>
+                        </div>
+                        <div class="grupo-campo">
+                            <label for="telefonoCita">Número telefónico <span class="indicador-requerido">*</span></label>
+                            <input type="tel" id="telefonoCita" name="telefonoCita" placeholder="Ej. 9987-6543" maxlength="9">
+                            <span class="mensaje-error" id="errorTelefonoCita"></span>
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="direccionCita">Dirección <span class="indicador-requerido">*</span></label>
+                        <input type="text" id="direccionCita" name="direccionCita" placeholder="Ej. Col. Kennedy, bloque 4, casa 12, Tegucigalpa">
+                        <span class="mensaje-error" id="errorDireccionCita"></span>
+                    </div>
+
+                    <button type="submit" class="boton boton-formulario">Solicitar cita</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer class="pie-pagina">
+        <div class="contenedor-general contenido-pie">
+            <div class="columna-pie">
+                <a href="index.html" class="logo logo-pie">Hospital Vida y Salud</a>
+                <p>Atención médica integral, segura y humana para nuestros pacientes y sus familias.</p>
+            </div>
+            <div class="columna-pie">
+                <h2>Enlaces</h2>
+                <ul>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="medicos.html">Directorio médico</a></li>
+                    <li><a href="faq.html">Preguntas frecuentes</a></li>
+                </ul>
+            </div>
+            <div class="columna-pie">
+                <h2>Contacto</h2>
+                <ul>
+                    <li>Tegucigalpa, Honduras</li>
+                    <li><a href="tel:+50422000000">+504 2200-0000</a></li>
+                    <li><a href="mailto:contacto@hospitalvidaysalud.com">contacto@hospitalvidaysalud.com</a></li>
+                </ul>
+            </div>
+            <div class="columna-pie">
+                <h2>Horarios</h2>
+                <ul>
+                    <li>Consultas: Lunes a Sábado</li>
+                    <li>7:00 a. m. - 7:00 p. m.</li>
+                    <li>Emergencias: 24 horas</li>
+                </ul>
+            </div>
+        </div>
+        <div class="pie-inferior">
+            <p>&copy;
+                <span id="anioActual"></span>
+                Hospital Vida y Salud. Proyecto académico ICC - SCJ (UNICAH)</p>
+        </div>
+    </footer>
+    <button
+        id="botonArriba"
+        class="boton-arriba"
+        type="button"
+        aria-label="Volver al inicio de la página"
+    >
+        ↑
+    </button>
+    <script src="JavaScript/script.js"></script>
+    <script src="JavaScript/validaciones.js"></script>
+</body>
+</html>

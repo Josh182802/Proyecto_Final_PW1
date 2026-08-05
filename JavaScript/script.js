@@ -11,88 +11,100 @@ document.addEventListener("DOMContentLoaded", function () {
     let indiceActual = 0;
     let intervaloCarrusel;
 
-    botonMenu.addEventListener("click", function () {
-        menuPrincipal.classList.toggle("menu-abierto");
-        botonMenu.classList.toggle("activo");
+    // validacion menu
+    if (botonMenu && menuPrincipal) {
+        botonMenu.addEventListener("click", function () {
+            menuPrincipal.classList.toggle("menu-abierto");
+            botonMenu.classList.toggle("activo");
 
-        const menuEstaAbierto =
-            menuPrincipal.classList.contains("menu-abierto");
+            const menuEstaAbierto =
+                menuPrincipal.classList.contains("menu-abierto");
 
-        botonMenu.setAttribute("aria-expanded", menuEstaAbierto);
+            botonMenu.setAttribute("aria-expanded", menuEstaAbierto);
 
-        botonMenu.setAttribute(
-            "aria-label",
-            menuEstaAbierto ? "Cerrar menú" : "Abrir menú"
-        );
-    });
+            botonMenu.setAttribute(
+                "aria-label",
+                menuEstaAbierto ? "Cerrar menú" : "Abrir menú"
+            );
+        });
+    }
 
-    function mostrarDiapositiva(nuevoIndice) {
+    // validacion carusel
+    if (diapositivas.length > 0 && indicadores.length > 0 && botonAnterior && botonSiguiente) {
 
-        if (nuevoIndice >= diapositivas.length) {
-            indiceActual = 0;
-        } else if (nuevoIndice < 0) {
-            indiceActual = diapositivas.length - 1;
-        } else {
-            indiceActual = nuevoIndice;
+        function mostrarDiapositiva(nuevoIndice) {
+
+            if (nuevoIndice >= diapositivas.length) {
+                indiceActual = 0;
+            } else if (nuevoIndice < 0) {
+                indiceActual = diapositivas.length - 1;
+            } else {
+                indiceActual = nuevoIndice;
+            }
+
+            diapositivas.forEach(function (diapositiva) {
+                diapositiva.classList.remove("activa");
+            });
+
+            indicadores.forEach(function (indicador) {
+                indicador.classList.remove("activo");
+            });
+
+            diapositivas[indiceActual].classList.add("activa");
+            indicadores[indiceActual].classList.add("activo");
         }
 
-        diapositivas.forEach(function (diapositiva) {
-            diapositiva.classList.remove("activa");
+        function iniciarCarruselAutomatico() {
+            clearInterval(intervaloCarrusel);
+
+            intervaloCarrusel = setInterval(function () {
+                mostrarDiapositiva(indiceActual + 1);
+            }, 6000);
+        }
+
+        botonSiguiente.addEventListener("click", function () {
+            mostrarDiapositiva(indiceActual + 1);
+            iniciarCarruselAutomatico();
+        });
+
+        botonAnterior.addEventListener("click", function () {
+            mostrarDiapositiva(indiceActual - 1);
+            iniciarCarruselAutomatico();
         });
 
         indicadores.forEach(function (indicador) {
-            indicador.classList.remove("activo");
+            indicador.addEventListener("click", function () {
+                const indiceSeleccionado =
+                    Number(indicador.dataset.indice);
+
+                mostrarDiapositiva(indiceSeleccionado);
+                iniciarCarruselAutomatico();
+            });
         });
 
-        diapositivas[indiceActual].classList.add("activa");
-        indicadores[indiceActual].classList.add("activo");
+        mostrarDiapositiva(0);
+        iniciarCarruselAutomatico();
     }
 
-    function iniciarCarruselAutomatico() {
-        clearInterval(intervaloCarrusel);
+    // boton subir
+    if (botonArriba) {
+        window.addEventListener("scroll", function () {
+            botonArriba.classList.toggle(
+                "visible",
+                window.scrollY > 500
+            );
+        });
 
-        intervaloCarrusel = setInterval(function () {
-            mostrarDiapositiva(indiceActual + 1);
-        }, 6000);
+        botonArriba.addEventListener("click", function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
     }
 
-    botonSiguiente.addEventListener("click", function () {
-        mostrarDiapositiva(indiceActual + 1);
-        iniciarCarruselAutomatico();
-    });
-
-    botonAnterior.addEventListener("click", function () {
-        mostrarDiapositiva(indiceActual - 1);
-        iniciarCarruselAutomatico();
-    });
-
-    indicadores.forEach(function (indicador) {
-        indicador.addEventListener("click", function () {
-            const indiceSeleccionado =
-                Number(indicador.dataset.indice);
-
-            mostrarDiapositiva(indiceSeleccionado);
-            iniciarCarruselAutomatico();
-        });
-    });
-
-    window.addEventListener("scroll", function () {
-        botonArriba.classList.toggle(
-            "visible",
-            window.scrollY > 500
-        );
-    });
-
-    botonArriba.addEventListener("click", function () {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    });
-
-    anioActual.textContent = new Date().getFullYear();
-
-    mostrarDiapositiva(0);
-    iniciarCarruselAutomatico();
+    if (anioActual) {
+        anioActual.textContent = new Date().getFullYear();
+    }
 
 });
