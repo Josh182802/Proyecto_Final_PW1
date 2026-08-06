@@ -44,61 +44,137 @@
 
         <section class="seccion-formulario">
             <div class="contenedor-formulario">
-                <div class="mensaje-formulario" id="mensajeFormularioCitas"></div>
-                <form id="formularioCitas" novalidate>
-                    <div class="fila-formulario">
-                        <div class="grupo-campo">
-                            <label for="fechaCita">Fecha <span class="indicador-requerido">*</span></label>
-                            <input type="date" id="fechaCita" name="fechaCita">
-                            <span class="mensaje-error" id="errorFechaCita"></span>
+
+                <!-- Aviso si el usuario llega sin haber elegido médico -->
+                <div class="aviso-sin-medico" id="avisoSinMedico">
+                    <p>Para solicitar una cita primero debes elegir un médico desde nuestro directorio.</p>
+                    <a href="medicos.html" class="boton">Buscar médico</a>
+                </div>
+
+                <!-- Contenido visible solo cuando hay un médico seleccionado -->
+                <div id="contenidoConMedico" style="display: none;">
+
+                    <div class="resumen-medico">
+                        <div class="resumen-medico-info">
+                            <span class="etiqueta-resumen">Cita con</span>
+                            <h3 id="resumenNombre"></h3>
+                            <span class="especialidad-medico" id="resumenEspecialidad"></span>
+                            <p class="texto-ayuda" id="resumenDias"></p>
                         </div>
-                        <div class="grupo-campo">
-                            <label for="horaCita">Hora <span class="indicador-requerido">*</span></label>
-                            <input type="time" id="horaCita" name="horaCita">
-                            <span class="mensaje-error" id="errorHoraCita"></span>
+                        <a href="medicos.html" class="enlace-cambiar">Cambiar médico</a>
+                    </div>
+
+                    <!-- Formulario -->
+                    <div id="bloqueFormulario">
+                        <div class="mensaje-formulario" id="mensajeFormularioCitas"></div>
+                        <form id="formularioCitas" novalidate>
+                            <div class="fila-formulario">
+                                <div class="grupo-campo">
+                                    <label for="fechaCita">Fecha <span class="indicador-requerido">*</span></label>
+                                    <input type="date" id="fechaCita" name="fechaCita">
+                                    <span class="mensaje-error" id="errorFechaCita"></span>
+                                </div>
+                                <div class="grupo-campo">
+                                    <label for="horaCita">Hora <span class="indicador-requerido">*</span></label>
+                                    <select id="horaCita" name="horaCita">
+                                        <option value="">Selecciona una hora</option>
+                                    </select>
+                                    <span class="mensaje-error" id="errorHoraCita"></span>
+                                </div>
+                            </div>
+
+                            <div class="fila-formulario">
+                                <div class="grupo-campo">
+                                    <label for="nombreCita">Nombre <span class="indicador-requerido">*</span></label>
+                                    <input type="text" id="nombreCita" name="nombreCita" placeholder="Ej. María">
+                                    <span class="mensaje-error" id="errorNombreCita"></span>
+                                </div>
+                                <div class="grupo-campo">
+                                    <label for="apellidoCita">Apellido <span class="indicador-requerido">*</span></label>
+                                    <input type="text" id="apellidoCita" name="apellidoCita" placeholder="Ej. López">
+                                    <span class="mensaje-error" id="errorApellidoCita"></span>
+                                </div>
+                            </div>
+
+                            <div class="fila-formulario">
+                                <div class="grupo-campo">
+                                    <label for="generoCita">Género <span class="indicador-requerido">*</span></label>
+                                    <select id="generoCita" name="generoCita">
+                                        <option value="">Selecciona una opción</option>
+                                        <option value="Femenino">Femenino</option>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Otro">Otro</option>
+                                        <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                                    </select>
+                                    <span class="mensaje-error" id="errorGeneroCita"></span>
+                                </div>
+                                <div class="grupo-campo">
+                                    <label for="telefonoCita">Número telefónico <span class="indicador-requerido">*</span></label>
+                                    <input type="tel" id="telefonoCita" name="telefonoCita" placeholder="9999-9999" maxlength="9">
+                                    <p class="texto-ayuda">Formato hondureño: ej. 9987-6543.</p>
+                                    <span class="mensaje-error" id="errorTelefonoCita"></span>
+                                </div>
+                            </div>
+
+                            <div class="grupo-campo">
+                                <label for="direccionCita">Dirección <span class="indicador-requerido">*</span></label>
+                                <input type="text" id="direccionCita" name="direccionCita" placeholder="Ej. Col. Kennedy, bloque 4, casa 12, Tegucigalpa">
+                                <span class="mensaje-error" id="errorDireccionCita"></span>
+                            </div>
+
+                            <button type="submit" class="boton boton-formulario">Solicitar cita</button>
+                        </form>
+                    </div>
+
+                    <!-- Recibo generado tras enviar el formulario -->
+                    <div class="recibo-cita" id="reciboCita" style="display: none;">
+                        <div class="recibo-encabezado">
+                            <h3>Comprobante de solicitud de cita</h3>
+                            <span class="recibo-numero" id="reciboNumero"></span>
+                        </div>
+                        <div class="recibo-cuerpo">
+                            <div class="recibo-fila">
+                                <span>Médico</span>
+                                <strong id="reciboMedico"></strong>
+                            </div>
+                            <div class="recibo-fila">
+                                <span>Especialidad</span>
+                                <strong id="reciboEspecialidad"></strong>
+                            </div>
+                            <div class="recibo-fila">
+                                <span>Fecha</span>
+                                <strong id="reciboFecha"></strong>
+                            </div>
+                            <div class="recibo-fila">
+                                <span>Hora</span>
+                                <strong id="reciboHora"></strong>
+                            </div>
+                            <div class="recibo-separador"></div>
+                            <div class="recibo-fila">
+                                <span>Paciente</span>
+                                <strong id="reciboPaciente"></strong>
+                            </div>
+                            <div class="recibo-fila">
+                                <span>Género</span>
+                                <strong id="reciboGenero"></strong>
+                            </div>
+                            <div class="recibo-fila">
+                                <span>Teléfono</span>
+                                <strong id="reciboTelefono"></strong>
+                            </div>
+                            <div class="recibo-fila">
+                                <span>Dirección</span>
+                                <strong id="reciboDireccion"></strong>
+                            </div>
+                        </div>
+                        <p class="recibo-nota">Presenta este comprobante el día de tu cita. Nuestro equipo se pondrá en contacto contigo para confirmar la disponibilidad.</p>
+                        <div class="recibo-acciones">
+                            <button type="button" class="boton" id="botonImprimirRecibo">Imprimir</button>
+                            <button type="button" class="boton boton-secundario-claro" id="botonNuevaCita">Agendar otra cita</button>
                         </div>
                     </div>
 
-                    <div class="fila-formulario">
-                        <div class="grupo-campo">
-                            <label for="nombreCita">Nombre <span class="indicador-requerido">*</span></label>
-                            <input type="text" id="nombreCita" name="nombreCita" placeholder="Ej. María">
-                            <span class="mensaje-error" id="errorNombreCita"></span>
-                        </div>
-                        <div class="grupo-campo">
-                            <label for="apellidoCita">Apellido <span class="indicador-requerido">*</span></label>
-                            <input type="text" id="apellidoCita" name="apellidoCita" placeholder="Ej. López">
-                            <span class="mensaje-error" id="errorApellidoCita"></span>
-                        </div>
-                    </div>
-
-                    <div class="fila-formulario">
-                        <div class="grupo-campo">
-                            <label for="generoCita">Género <span class="indicador-requerido">*</span></label>
-                            <select id="generoCita" name="generoCita">
-                                <option value="">Selecciona una opción</option>
-                                <option value="Femenino">Femenino</option>
-                                <option value="Masculino">Masculino</option>
-                                <option value="Otro">Otro</option>
-                                <option value="Prefiero no decirlo">Prefiero no decirlo</option>
-                            </select>
-                            <span class="mensaje-error" id="errorGeneroCita"></span>
-                        </div>
-                        <div class="grupo-campo">
-                            <label for="telefonoCita">Número telefónico <span class="indicador-requerido">*</span></label>
-                            <input type="tel" id="telefonoCita" name="telefonoCita" placeholder="Ej. 9987-6543" maxlength="9">
-                            <span class="mensaje-error" id="errorTelefonoCita"></span>
-                        </div>
-                    </div>
-
-                    <div class="grupo-campo">
-                        <label for="direccionCita">Dirección <span class="indicador-requerido">*</span></label>
-                        <input type="text" id="direccionCita" name="direccionCita" placeholder="Ej. Col. Kennedy, bloque 4, casa 12, Tegucigalpa">
-                        <span class="mensaje-error" id="errorDireccionCita"></span>
-                    </div>
-
-                    <button type="submit" class="boton boton-formulario">Solicitar cita</button>
-                </form>
+                </div>
             </div>
         </section>
     </main>
