@@ -1346,3 +1346,197 @@ h1 {
     }
 
 }
+
+/* ============================================= */
+/* FLUJO DE AGENDAMIENTO: resumen del médico y recibo de cita */
+/* (agregado sobre el trabajo de banner-pagina / contenido-pagina ya existente) */
+/* ============================================= */
+
+.boton-pequeno {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 9px 18px;
+    font-size: 14px;
+}
+
+.aviso-sin-medico {
+    padding: 40px 30px;
+    text-align: center;
+    border: 1px dashed #cccccc;
+    border-radius: 10px;
+    background-color: #f5f7f8;
+}
+
+.aviso-sin-medico p {
+    margin-bottom: 18px;
+    color: #666666;
+    font-size: 16px;
+}
+
+.resumen-medico {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 22px 26px;
+    border-radius: 10px;
+    background-color: #e8f7f8;
+}
+
+.etiqueta-resumen {
+    display: block;
+    margin-bottom: 4px;
+    color: #087f8c;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.resumen-medico-info h3 {
+    margin-bottom: 6px;
+    color: #1e2a30;
+    font-size: 20px;
+}
+
+.resumen-medico-info .especialidad-medico {
+    margin-bottom: 8px;
+}
+
+.resumen-medico-info .texto-ayuda {
+    color: #064f5c;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.enlace-cambiar {
+    flex-shrink: 0;
+    color: #087f8c;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+.enlace-cambiar:hover {
+    color: #064f5c;
+}
+
+/* ----- Recibo ----- */
+
+.recibo-cita {
+    padding: 35px;
+    border: 1px solid #dddddd;
+    border-radius: 12px;
+    background-color: #ffffff;
+}
+
+.recibo-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px dashed #dddddd;
+}
+
+.recibo-encabezado h3 {
+    color: #1e2a30;
+    font-size: 20px;
+}
+
+.recibo-numero {
+    padding: 6px 14px;
+    border-radius: 20px;
+    background-color: #087f8c;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.recibo-cuerpo {
+    margin-bottom: 20px;
+}
+
+.recibo-fila {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.recibo-fila span {
+    color: #666666;
+    font-size: 15px;
+}
+
+.recibo-fila strong {
+    color: #1e2a30;
+    font-size: 15px;
+    text-align: right;
+}
+
+.recibo-separador {
+    margin: 8px 0;
+    border-top: 1px dashed #dddddd;
+}
+
+.recibo-nota {
+    margin-bottom: 25px;
+    color: #666666;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.recibo-acciones {
+    display: flex;
+    gap: 15px;
+}
+
+.recibo-acciones .boton {
+    flex: 1;
+    text-align: center;
+}
+
+.boton-secundario-claro {
+    border-color: #087f8c;
+    background-color: transparent;
+    color: #087f8c;
+}
+
+.boton-secundario-claro:hover {
+    background-color: #087f8c;
+    color: #ffffff;
+}
+
+@media print {
+    .encabezado, .banner-interno, .pie-pagina, .boton-arriba,
+    .resumen-medico, .recibo-acciones, .mensaje-formulario {
+        display: none !important;
+    }
+
+    .seccion-formulario {
+        padding: 0;
+    }
+
+    .contenedor-formulario {
+        box-shadow: none;
+        border: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .resumen-medico {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .recibo-cita {
+        padding: 24px 20px;
+    }
+
+    .recibo-acciones {
+        flex-direction: column;
+    }
+}
