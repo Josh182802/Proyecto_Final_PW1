@@ -1,23 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // ----------------------------------------------------------
-    // Expresiones regulares
-    // ----------------------------------------------------------
+    // expresiones regulares
 
-    // Solo letras
     const RE_SOLO_LETRAS = /^[A-Za-zÁÉÍÓÚÑáéíóúñÜü\s]+$/;
 
-    // Teléfono de Honduras
     const RE_TELEFONO_HN = /^[0-9]{4}-?[0-9]{4}$/;
 
-    // validacion de numero inicial valido
     const RE_PREFIJO_TELEFONO_HN = /^[2389]/;
 
-    // Correo electrónico
     const RE_CORREO = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-
-    // Funciones de aviso
 
     function mostrarError(campo, elementoError, mensaje) {
         campo.classList.add("campo-invalido");
@@ -40,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
         contenedor.className = "mensaje-formulario visible " + tipo;
     }
 
-    // Formateo del numero
     function formatearTelefono(input) {
         input.addEventListener("input", function () {
             let valor = input.value.replace(/[^0-9]/g, "").slice(0, 8);
@@ -51,7 +41,22 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    //Validaciones por Campo y Utilidad
+    function formatearHora12(horaStr) {
+        const [horaTexto, minutoTexto] = horaStr.split(":");
+        let hora = Number(horaTexto);
+        const sufijo = hora >= 12 ? "p.m." : "a.m.";
+        hora = hora % 12;
+        if (hora === 0) hora = 12;
+        return hora + ":" + minutoTexto + " " + sufijo;
+    }
+
+    function formatearFechaLarga(fechaISO) {
+        const fecha = new Date(fechaISO + "T00:00:00");
+        const opciones = { weekday: "long", day: "numeric", month: "long", year: "numeric" };
+        return fecha.toLocaleDateString("es-HN", opciones);
+    }
+
+    // validaciones individuales
 
     function validarSoloLetras(campo, elementoError, nombreCampo) {
         const valor = campo.value.trim();
@@ -86,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
             mostrarError(campo, elementoError, "La dirección es obligatoria.");
             return false;
         }
+        // No se permite una dirección compuesta únicamente por números
         if (/^[0-9]+$/.test(valor)) {
             mostrarError(campo, elementoError, "Ingresa una dirección válida, no solo números.");
             return false;
@@ -140,23 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
     }
 
-    function validarFecha(campo, elementoError) {
-        const valor = campo.value;
-        if (campoVacio(valor)) {
-            mostrarError(campo, elementoError, "La fecha es obligatoria.");
-            return false;
-        }
-        const hoy = new Date();
-        hoy.setHours(0, 0, 0, 0);
-        const fechaSeleccionada = new Date(valor + "T00:00:00");
-        if (fechaSeleccionada < hoy) {
-            mostrarError(campo, elementoError, "La fecha no puede ser anterior a hoy.");
-            return false;
-        }
-        limpiarError(campo, elementoError);
-        return true;
-    }
-
     function validarMensaje(campo, elementoError) {
         const valor = campo.value.trim();
         if (campoVacio(valor)) {
@@ -171,11 +160,21 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
     }
 
-    //Citas
+    // citas
 
     const formularioCitas = document.getElementById("formularioCitas");
 
     if (formularioCitas) {
+
+        const avisoSinMedico = document.getElementById("avisoSinMedico");
+        const contenidoConMedico = document.getElementById("contenidoConMedico");
+        const bloqueFormulario = document.getElementById("bloqueFormulario");
+        const reciboCita = document.getElementById("reciboCita");
+
+        const resumenNombre = document.getElementById("resumenNombre");
+        const resumenEspecialidad = document.getElementById("resumenEspecialidad");
+        const resumenDias = document.getElementById("resumenDias");
+
         const fecha = document.getElementById("fechaCita");
         const hora = document.getElementById("horaCita");
         const nombre = document.getElementById("nombreCita");
@@ -193,51 +192,143 @@ document.addEventListener("DOMContentLoaded", function () {
         const errorDireccion = document.getElementById("errorDireccionCita");
         const errorTelefono = document.getElementById("errorTelefonoCita");
 
-        //bloquear fechas pasadas
-        const hoyISO = new Date().toISOString().split("T")[0];
-        fecha.setAttribute("min", hoyISO);
+        // traer medico de medicos.html
+        const medicoGuardado = sessionStorage.getItem("medicoSeleccionado");
+        let medico = null;
 
-        formatearTelefono(telefono);
-
-        //validacion al salir del campo
-        nombre.addEventListener("blur", function () { validarSoloLetras(nombre, errorNombre, "nombre"); });
-        apellido.addEventListener("blur", function () { validarSoloLetras(apellido, errorApellido, "apellido"); });
-        fecha.addEventListener("blur", function () { validarFecha(fecha, errorFecha); });
-        hora.addEventListener("blur", function () { validarRequerido(hora, errorHora, "hora"); });
-        genero.addEventListener("change", function () { validarSelect(genero, errorGenero, "el género"); });
-        direccion.addEventListener("blur", function () { validarDireccion(direccion, errorDireccion); });
-        telefono.addEventListener("blur", function () { validarTelefonoHN(telefono, errorTelefono); });
-
-        formularioCitas.addEventListener("submit", function (evento) {
-            evento.preventDefault();
-
-            const valido =
-                validarFecha(fecha, errorFecha) &
-                validarRequerido(hora, errorHora, "hora") &
-                validarSoloLetras(nombre, errorNombre, "nombre") &
-                validarSoloLetras(apellido, errorApellido, "apellido") &
-                validarSelect(genero, errorGenero, "el género") &
-                validarDireccion(direccion, errorDireccion) &
-                validarTelefonoHN(telefono, errorTelefono);
-
-            if (valido) {
-                mostrarMensajeFormulario(
-                    mensajeFormulario,
-                    "exito",
-                    "¡Solicitud enviada! Hemos recibido tu solicitud de cita para el " + fecha.value + " a las " + hora.value + ". Nuestro equipo se pondrá en contacto contigo pronto."
-                );
-                formularioCitas.reset();
-            } else {
-                mostrarMensajeFormulario(
-                    mensajeFormulario,
-                    "error",
-                    "Por favor corrige los campos marcados antes de enviar el formulario."
-                );
+        if (medicoGuardado) {
+            try {
+                medico = JSON.parse(medicoGuardado);
+            } catch (error) {
+                medico = null;
             }
-        });
+        }
+
+        if (!medico || !medico.dias || !medico.horas) {
+            avisoSinMedico.style.display = "block";
+            contenidoConMedico.style.display = "none";
+        } else {
+            avisoSinMedico.style.display = "none";
+            contenidoConMedico.style.display = "block";
+
+            // mostrar resumen
+            resumenNombre.textContent = medico.nombre;
+            resumenEspecialidad.textContent = medico.especialidad;
+            resumenDias.textContent = "Atiende: " + medico.diasTexto;
+
+            // validar fechas para cita
+            const hoyISO = new Date().toISOString().split("T")[0];
+            fecha.setAttribute("min", hoyISO);
+
+            // llenar horas
+            medico.horas.forEach(function (horaFija) {
+                const opcion = document.createElement("option");
+                opcion.value = horaFija;
+                opcion.textContent = formatearHora12(horaFija);
+                hora.appendChild(opcion);
+            });
+
+            formatearTelefono(telefono);
+
+            // validar coincidencia de fechas
+            function validarFechaSegunMedico() {
+                const valor = fecha.value;
+                if (campoVacio(valor)) {
+                    mostrarError(fecha, errorFecha, "La fecha es obligatoria.");
+                    return false;
+                }
+
+                const hoy = new Date();
+                hoy.setHours(0, 0, 0, 0);
+                const fechaSeleccionada = new Date(valor + "T00:00:00");
+
+                if (fechaSeleccionada < hoy) {
+                    mostrarError(fecha, errorFecha, "La fecha no puede ser anterior a hoy.");
+                    return false;
+                }
+
+                const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+                const diaSeleccionado = diasSemana[fechaSeleccionada.getDay()];
+
+                if (!medico.dias.includes(diaSeleccionado)) {
+                    mostrarError(
+                        fecha,
+                        errorFecha,
+                        medico.nombre + " no atiende los días " + diaSeleccionado + ". Días disponibles: " + medico.diasTexto + "."
+                    );
+                    return false;
+                }
+
+                limpiarError(fecha, errorFecha);
+                return true;
+            }
+
+            // Validación en tiempo real
+            nombre.addEventListener("blur", function () { validarSoloLetras(nombre, errorNombre, "nombre"); });
+            apellido.addEventListener("blur", function () { validarSoloLetras(apellido, errorApellido, "apellido"); });
+            fecha.addEventListener("change", validarFechaSegunMedico);
+            hora.addEventListener("change", function () { validarSelect(hora, errorHora, "una hora"); });
+            genero.addEventListener("change", function () { validarSelect(genero, errorGenero, "el género"); });
+            direccion.addEventListener("blur", function () { validarDireccion(direccion, errorDireccion); });
+            telefono.addEventListener("blur", function () { validarTelefonoHN(telefono, errorTelefono); });
+
+            // crear el recibo
+            function generarRecibo() {
+                const numeroRecibo = "HVS-" + Date.now().toString().slice(-8);
+
+                document.getElementById("reciboNumero").textContent = "N.° " + numeroRecibo;
+                document.getElementById("reciboMedico").textContent = medico.nombre;
+                document.getElementById("reciboEspecialidad").textContent = medico.especialidad;
+                document.getElementById("reciboFecha").textContent = formatearFechaLarga(fecha.value);
+                document.getElementById("reciboHora").textContent = formatearHora12(hora.value);
+                document.getElementById("reciboPaciente").textContent = nombre.value.trim() + " " + apellido.value.trim();
+                document.getElementById("reciboGenero").textContent = genero.value;
+                document.getElementById("reciboTelefono").textContent = telefono.value.trim();
+                document.getElementById("reciboDireccion").textContent = direccion.value.trim();
+
+                bloqueFormulario.style.display = "none";
+                reciboCita.style.display = "block";
+                reciboCita.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+
+            formularioCitas.addEventListener("submit", function (evento) {
+                evento.preventDefault();
+
+                const valido =
+                    validarFechaSegunMedico() &
+                    validarSelect(hora, errorHora, "una hora") &
+                    validarSoloLetras(nombre, errorNombre, "nombre") &
+                    validarSoloLetras(apellido, errorApellido, "apellido") &
+                    validarSelect(genero, errorGenero, "el género") &
+                    validarDireccion(direccion, errorDireccion) &
+                    validarTelefonoHN(telefono, errorTelefono);
+
+                if (valido) {
+                    generarRecibo();
+                } else {
+                    mostrarMensajeFormulario(
+                        mensajeFormulario,
+                        "error",
+                        "Por favor corrige los campos marcados antes de enviar el formulario."
+                    );
+                }
+            });
+
+            const botonImprimir = document.getElementById("botonImprimirRecibo");
+            const botonNuevaCita = document.getElementById("botonNuevaCita");
+
+            botonImprimir.addEventListener("click", function () {
+                window.print();
+            });
+
+            botonNuevaCita.addEventListener("click", function () {
+                sessionStorage.removeItem("medicoSeleccionado");
+                window.location.href = "medicos.html";
+            });
+        }
     }
 
-    //contacto
+    // contacto
 
     const formularioContacto = document.getElementById("formularioContacto");
 

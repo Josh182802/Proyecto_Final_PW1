@@ -1,61 +1,76 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    //Registro de Medicos
     const medicos = [
         {
             nombre: "Dr. Carlos Martínez",
             especialidad: "Cardiología",
             telefono: "2220-1111",
-            horario: "Lunes a viernes, 8:00 a.m. - 4:00 p.m.",
+            dias: ["Lunes", "Martes", "Miércoles", "Jueves"],
+            diasTexto: "Lunes a jueves",
+            horas: ["08:00", "09:00", "10:00", "11:00", "14:00", "15:00"],
             iniciales: "CM"
         },
         {
             nombre: "Dra. Ana Rodríguez",
             especialidad: "Pediatría",
             telefono: "2220-1112",
-            horario: "Lunes a sábado, 7:00 a.m. - 3:00 p.m.",
+            dias: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+            diasTexto: "Lunes a sábado",
+            horas: ["07:00", "08:00", "09:00", "10:00", "11:00"],
             iniciales: "AR"
         },
         {
             nombre: "Dr. Luis Hernández",
             especialidad: "Dermatología",
             telefono: "2220-1113",
-            horario: "Martes a sábado, 9:00 a.m. - 5:00 p.m.",
+            dias: ["Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+            diasTexto: "Martes a sábado",
+            horas: ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"],
             iniciales: "LH"
         },
         {
             nombre: "Dra. María Fernández",
             especialidad: "Ginecología",
             telefono: "2220-1114",
-            horario: "Lunes a viernes, 8:00 a.m. - 4:00 p.m.",
+            dias: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"],
+            diasTexto: "Lunes a viernes",
+            horas: ["08:00", "09:00", "10:00", "11:00", "14:00", "15:00"],
             iniciales: "MF"
         },
         {
             nombre: "Dr. Roberto Castillo",
             especialidad: "Traumatología",
             telefono: "2220-1115",
-            horario: "Lunes a viernes, 7:00 a.m. - 3:00 p.m.",
+            dias: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"],
+            diasTexto: "Lunes a viernes",
+            horas: ["07:00", "08:00", "09:00", "10:00", "14:00"],
             iniciales: "RC"
         },
         {
             nombre: "Dra. Patricia Núñez",
             especialidad: "Medicina Interna",
             telefono: "2220-1116",
-            horario: "Lunes a sábado, 8:00 a.m. - 4:00 p.m.",
+            dias: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+            diasTexto: "Lunes a sábado",
+            horas: ["08:00", "09:00", "10:00", "11:00", "15:00", "16:00"],
             iniciales: "PN"
         },
         {
             nombre: "Dr. Eduardo Flores",
             especialidad: "Oftalmología",
             telefono: "2220-1117",
-            horario: "Miércoles a sábado, 9:00 a.m. - 5:00 p.m.",
+            dias: ["Miércoles", "Jueves", "Viernes", "Sábado"],
+            diasTexto: "Miércoles a sábado",
+            horas: ["09:00", "10:00", "11:00", "14:00", "15:00"],
             iniciales: "EF"
         },
         {
             nombre: "Dra. Gabriela Torres",
             especialidad: "Neurología",
             telefono: "2220-1118",
-            horario: "Lunes, miércoles y viernes, 8:00 a.m. - 3:00 p.m.",
+            dias: ["Lunes", "Miércoles", "Viernes"],
+            diasTexto: "Lunes, miércoles y viernes",
+            horas: ["08:00", "09:00", "10:00", "14:00"],
             iniciales: "GT"
         }
     ];
@@ -70,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!formularioBusqueda) return;
 
-    //Llenar especialidades
+    // llenar el select
     function cargarEspecialidades() {
         const especialidades = [...new Set(medicos.map(m => m.especialidad))].sort();
         especialidades.forEach(function (especialidad) {
@@ -81,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    //quitar tildes
     function normalizar(texto) {
         return texto
             .toLowerCase()
@@ -90,7 +104,13 @@ document.addEventListener("DOMContentLoaded", function () {
             .trim();
     }
 
-    //crear las tarjetas de medicos
+    // envia medico a citas.html
+    function seleccionarMedico(medico) {
+        sessionStorage.setItem("medicoSeleccionado", JSON.stringify(medico));
+        window.location.href = "citas.html";
+    }
+
+    // tarjetas
     function mostrarMedicos(lista) {
         contenedorMedicos.innerHTML = "";
 
@@ -103,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
         sinResultados.style.display = "none";
         contadorResultados.innerHTML = "Se encontraron <strong>" + lista.length + "</strong> médico(s).";
 
-        lista.forEach(function (medico) {
+        lista.forEach(function (medico, indice) {
             const tarjeta = document.createElement("article");
             tarjeta.className = "tarjeta-medico";
             tarjeta.innerHTML =
@@ -111,14 +131,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 '<div class="info-medico">' +
                     '<h3>' + medico.nombre + '</h3>' +
                     '<span class="especialidad-medico">' + medico.especialidad + '</span>' +
-                    '<p><strong>Horario:</strong> ' + medico.horario + '</p>' +
+                    '<p><strong>Atiende:</strong> ' + medico.diasTexto + '</p>' +
                     '<p><strong>Teléfono:</strong> ' + medico.telefono + '</p>' +
+                    '<button type="button" class="boton boton-pequeno boton-agendar" data-indice="' + indice + '">Agendar cita</button>' +
                 '</div>';
             contenedorMedicos.appendChild(tarjeta);
+
+            const botonAgendar = tarjeta.querySelector(".boton-agendar");
+            botonAgendar.addEventListener("click", function () {
+                seleccionarMedico(medico);
+            });
         });
     }
 
-    //filtros
+    // filtros
     function filtrarMedicos() {
         const textoNombre = normalizar(campoNombre.value);
         const especialidadSeleccionada = campoEspecialidad.value;
