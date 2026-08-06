@@ -14,18 +14,32 @@ document.addEventListener("DOMContentLoaded", function () {
     // validacion menu
     if (botonMenu && menuPrincipal) {
         botonMenu.addEventListener("click", function () {
-            menuPrincipal.classList.toggle("menu-abierto");
-            botonMenu.classList.toggle("activo");
+            const menuAbierto =
+                menuPrincipal.classList.toggle("menu-abierto");
 
-            const menuEstaAbierto =
-                menuPrincipal.classList.contains("menu-abierto");
+            botonMenu.classList.toggle("activo", menuAbierto);
 
-            botonMenu.setAttribute("aria-expanded", menuEstaAbierto);
+            botonMenu.setAttribute(
+                "aria-expanded",
+                menuAbierto.toString()
+            );
 
             botonMenu.setAttribute(
                 "aria-label",
-                menuEstaAbierto ? "Cerrar menú" : "Abrir menú"
+                menuAbierto ? "Cerrar menú" : "Abrir menú"
             );
+        });
+
+        const enlacesMenu =
+            menuPrincipal.querySelectorAll("a");
+
+        enlacesMenu.forEach(function (enlace) {
+            enlace.addEventListener("click", function () {
+                menuPrincipal.classList.remove("menu-abierto");
+                botonMenu.classList.remove("activo");
+                botonMenu.setAttribute("aria-expanded", "false");
+                botonMenu.setAttribute("aria-label", "Abrir menú");
+            });
         });
     }
 
